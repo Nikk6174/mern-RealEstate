@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose'); // Replace import with require
 const userRouter = require('./routes/user.route'); // Import the User model
+const authRouter = require('./routes/auth.route'); // Import the Auth model
 
 
 dotenv.config({ path: './api/.env' }); // Load environment variables
@@ -22,6 +23,7 @@ app.use(cors());
 
 // Test Route
 app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
 
 // Start the server
 const PORT = process.env.PORT;
