@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 function SignUp() {
   const [formData, setFormData] = useState({})
@@ -14,13 +14,15 @@ function SignUp() {
   }
   // console.log(formData)
 
+  const navigate = useNavigate()
+
   const handleSubmit =async (e) => {
     e.preventDefault()
 
     try {
       setLoading(true)
       console.log('Form submitted')
-      const res = await fetch('/api/auth/signUp', {
+      const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -35,12 +37,12 @@ function SignUp() {
         return
       }
       setLoading(false)
-      // console.log(data)
+      setError(null)
+      navigate('/sign-in')
       
     } catch (error) {
       setLoading(false)
       setError(error.message)
-      console.log(error)
     }
   }
 
