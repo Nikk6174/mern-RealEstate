@@ -4,7 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose'); // Replace import with require
 const userRouter = require('./routes/user.route'); // Import the User model
 const authRouter = require('./routes/auth.route'); // Import the Auth model
+const listingRouter = require('./routes/listing.route');
 const cookieParser = require('cookie-parser');
+
 
 
 dotenv.config({ path: './api/.env' }); // Load environment variables
@@ -27,6 +29,7 @@ app.use(cookieParser());
 // Test Route
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
 // Start the server
 const PORT = process.env.PORT;
