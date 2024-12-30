@@ -32,4 +32,17 @@ const updateUser = async (req, res, next) => {
     }
 };
 
-module.exports = { test, updateUser };
+const deleteUser = async (req, res, next)=>{
+    if (req.user.id !== req.params.id) {
+        return next(errorhandler(401, "u can only delete ur own account"));
+    }
+
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        res.status(200).json("user deleted")
+    } catch (error) {
+        
+    }
+}
+
+module.exports = { test, updateUser, deleteUser };
