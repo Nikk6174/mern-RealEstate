@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRef } from 'react'
+import {Link} from 'react-router-dom'
 import { updateUserFailure, updateUserStart, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserFailure, signOutUserStart, signOutUserSuccess } from '../redux/user/userSlice'
 
 function Profile() {
@@ -114,6 +115,11 @@ function Profile() {
         <button className='bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80'>
           {loading? "loading...": "update"}
         </button>
+
+        <Link className="text-center bg-green-700 uppercase p-3 text-white hover:opacity-90 rounded-lg " to = {'/create-listing'}>
+          Create Listing 
+        </Link>
+
       </form>
 
       <div onClick={handleDeleteUser} className='flex justify-between mt-5'>
@@ -127,7 +133,7 @@ function Profile() {
       </div>
 
       <p className='text-red-700 mt-4'>{error? error: ''}</p>
-
+      
     </div>
   )
 }
