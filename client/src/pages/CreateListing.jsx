@@ -1,6 +1,26 @@
 import React from 'react'
+import { useState } from 'react'
 
 function CreateListing() {
+
+  const [files, setFiles] = useState([])
+
+  const handleImageSubmit = ()=>{
+    if (files.length>0 && files.length<7){
+      const promises = []
+
+      for (let i=0; i<files.length; i++){
+        promises.push(storeImage(files[i]))
+      }
+    }
+  }
+
+  const storeImage=async (file)=>{
+    
+  }
+
+  console.log(files)
+
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       {/* writing main makes it seo friendly */}
@@ -87,8 +107,14 @@ function CreateListing() {
           </p>
 
           <div className="flex gap-4">
-            <input className='p-3 border border-grey-300 rounded-lg w-full' type="file" id='images' accept='image/*' multiple />
-            <button className='p-3 text-green-700 rounded-lg border border-green-700 hover:shadow-lg disabled:opacity-80'>Upload</button>
+            <input 
+              onChange={(e) =>setFiles(e.target.files)} 
+              className='p-3 border border-grey-300 rounded-lg w-full' 
+              type="file" 
+              id='images' 
+              accept='image/*' 
+              multiple />
+            <button type='button' onClick={handleImageSubmit} className='p-3 text-green-700 rounded-lg border border-green-700 hover:shadow-lg disabled:opacity-80'>Upload</button>
           </div>
 
           <button className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>Create Listing</button>
